@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup as bs
 import pandas as pd
 import requests
 
-# Set up path and browser 
+# Set up browser object
 def init_browser():
     executable_path = {'executable_path': '/usr/local/bin/chromedriver'}
     browser = Browser('chrome', **executable_path, headless=False) 
@@ -25,15 +25,15 @@ def scrape():
     html=browser.html
 
 # Create BeautifulSoup object to parse using html.parser
-    soup = bs(html, 'html.parser')
+    soup_news = bs(html, 'html.parser')
 
 # Use classes to extract information
 # Assign the text to variables that you can reference later
-    news_title = soup.find('div', class_='list_text').find('div', class_='content_title').text
+    news_title = soup_news.find('div', class_='list_text').find('div', class_='content_title').text
     print(f'The most current article on NASA.gov is "{news_title}."')
 
 # Extract the teaser paragraph for the first article
-    news_p = soup.find('div', class_='article_teaser_body').text
+    news_p = soup_news.find('div', class_='article_teaser_body').text
     print(f'The article, "{news_title}," is about {news_p}')
 
 #### Mars Space Images-------Featured Image
