@@ -89,23 +89,31 @@ def scrape():
 # Parse the Hemispheres html with soup
 # Create BeautifulSoup object to parse using html.parser
     html = browser.html
-    soup = bs(html, 'html.parser')
+    soup_hem = bs(html, 'html.parser')
 
-    results = soup.find_all('div', class_='item')
+    hem_results = soup_hem.find_all('div', class_='item')
     title = []
     img_url = []
 
 # Iterate through Hemisphere pages, visit pages and pull title and image url
-    for result in results:
-        link = "https://astrogeology.usgs.gov" + result.find('a', class_='itemLink product-item')['href']
-        browser.visit(link)
-        html = browser.html
-        soup = bs(html, 'html.parser')
-        page_result = soup.find('div', class_='container')
+# You will need to click each of the links to the hemispheres in order to find the image url to the full resolution image
+hem_results = soup_hem.find_all('div', class_='item')
+title = []
+img_url = []
+
+# Save both the image url string for the full resolution hemisphere image, and the Hemisphere title containing the hemisphere name
+# Use a Python dictionary to store the data using the keys `img_url` and `title`
+# Append the dictionary with the image url string and the hemisphere title to a list 
+for r in hem_results:
+    link = "https://astrogeology.usgs.gov" + r.find('a', class_='itemLink product-item')['href']
+    browser.visit(link)
+    html = browser.html
+    soup_hem = bs(html, 'html.parser')
+    end_page = soup_hem.find('div', class_='container')
     
-        title. append(page_result.find('h2', class_= 'title').text)
-        img_url.append("https://astrogeology.usgs.gov" + page_result.find('img', class_="wide-image")['src'])
-        print(title, img_url)
+    title.append(end_page.find('h2', class_= 'title').text)
+    img_url.append("https://astrogeology.usgs.gov" + end_page.find('img', class_="wide-image")['src'])
+print(title, img_url)
 
 # Save Hemisphere information to a dataframe
     hemisphere_image_urls = pd.DataFrame({
