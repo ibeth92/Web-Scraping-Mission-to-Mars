@@ -69,17 +69,18 @@ def scrape():
     table_df
 
 # Save table to files and organize in dataframe
-    tables = table_df[0]
-    tables.set_index(0, inplace=True)
-    tables
+tables = table_df[0]
 
-# Transpose previous dataframe 
-    tables = tables.transpose()
-    tables
+# Use Pandas to convert the data to a HTML table string
+# Define column headers
+tables.columns = ['Mars Data', 'Value']
 
-# Bring dataframe into html
-    html_table = tables.to_html()
-    html_table
+# Save table to files
+mars_facts = tables.to_html('mars_facts.html')
+
+!open mars_facts.html
+
+tables
 
 #### Mars Hemispheres
 # Bring in Mars website to be scraped and visit URL
