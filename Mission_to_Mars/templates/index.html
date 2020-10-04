@@ -41,7 +41,7 @@
           />
         </div>
         <div class="col-md-4">
-<!-- Mars Facts table Data -->
+<!-- Mars Facts Table -->
           <div class="row" id="mars-facts">
             <div class="col-md-12">
               <h4>Mars Facts</h4>
@@ -50,37 +50,33 @@
           </div>
         </div>
       </div>
-      <hr>
-      {% if mars.hemispheres is defined %} 
-      <div class="row">
-        <h2>Mars' Hemispheres</h2>
-        <div class="col-md-3">
-            <div> 
-              {{mars.hemispheres.0.title | safe}}
-            </div>
-            <img src="{{mars.hemispheres.0.img_url | default('static/150.png', true)}}" class="img-responsive" alt="{{mars.hemispheres.0.title | safe}}"/>
-        </div>
-          <div class="col-md-3">
-            <div> 
-              {{mars.hemispheres.1.title | safe}}
-            </div>
-            <img src="{{mars.hemispheres.1.img_url | default('static/150.png', true)}}" class="img-responsive" alt="{{mars.hemispheres.1.title | safe}}"/>
-          </div>
-          <div class="col-md-3">
-            <div> 
-              {{mars.hemispheres.2.title | safe}}
-            </div>
-            <img src="{{mars.hemispheres.2.img_url | default('static/150.png', true)}}" class="img-responsive" alt="{{mars.hemispheres.2.title | safe}}"/>
-          </div>
-          <div class="col-md-3">
-            <div> 
-              {{mars.hemispheres.3.title | safe}}
-            </div>
-            <img src="{{mars.hemispheres.3.img_url | default('static/150.png', true)}}" class="img-responsive" alt="{{mars.hemispheres.3.title | safe}}"/>
-            </div>
-      </div>
-      {% else %}
-      {% endif %}
-    </div>
+<!-- Mars Hemispheres -->
+<div class=row>
+  <div class="col-md-6">
+    <img src={{mars.url1}} class="picture" alt="Mars Hemisphere Image 1">
+    <figcaption class="figure-caption">{{mars.title1}}</figcaption>
+    
+  </div>
+  <div class="col-md-6">
+    <img src={{mars.url2}} class="picture" alt="Mars Hemisphere Image 2">
+    <figcaption class="figure-caption">{{mars.title2}}</figcaption>
+    
+  </div>
+</div>
+
+<div class=row>
+  <div class="col-md-6">
+    <img src={{mars.url3}} class="picture" alt="Mars Hemisphere Image 3">
+    <figcaption class="figure-caption">{{mars.title3}}</figcaption>
+    
+  </div>
+  <div class="col-md-6">
+    <img src={{mars.url4}} class="picture" alt="Mars Hemisphere Image 4">
+    <figcaption class="figure-caption">{{mars.title4}}</figcaption>
+    
+  </div>
+</div>
+
+</div>
   </body>
 </html>
