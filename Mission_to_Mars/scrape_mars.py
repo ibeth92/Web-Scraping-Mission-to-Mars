@@ -103,7 +103,7 @@ for i in range(len(links)):
     
 # Find the Sample image anchor tag and extract the href
     sample_elem = browser.links.find_by_text('Sample').first
-    sample_elem = browser.click_link_by_partial_text('Sample')
+    sample_elem = browser.links.find_by_partial_text('Sample')
     sample_elem = browser.find_by_text('Sample').first
     hemisphere['img_url'] = sample_elem['href']
     
