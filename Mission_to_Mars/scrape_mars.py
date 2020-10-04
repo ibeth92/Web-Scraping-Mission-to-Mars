@@ -87,38 +87,37 @@ tables
     url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
     browser.visit(url)
 
-# Parse the Hemispheres html with soup
-# Create BeautifulSoup object to parse using html.parser
-    html = browser.html
-    soup_hem = bs(html, 'html.parser')
+# Create a list to hold the images and titles.
+hemisphere_image_urls = []
 
-    hem_results = soup_hem.find_all('div', class_='item')
-    title = []
-    img_url = []
+# Write code to retrieve the image urls and titles for each hemisphere.
+# First, get a list of all of the hemispheres
+links = browser.find_by_css("a.product-item h3")
 
-# Iterate through Hemisphere pages, visit pages and pull title and image url
-# You will need to click each of the links to the hemispheres in order to find the image url to the full resolution image
-hem_results = soup_hem.find_all('div', class_='item')
-title = []
-img_url = []
-
-# Save both the image url string for the full resolution hemisphere image, and the Hemisphere title containing the hemisphere name
-# Use a Python dictionary to store the data using the keys `img_url` and `title`
-# Append the dictionary with the image url string and the hemisphere title to a list 
-for r in hem_results:
-    link = "https://astrogeology.usgs.gov" + r.find('a', class_='itemLink product-item')['href']
-    browser.visit(link)
-    html = browser.html
-    soup_hem = bs(html, 'html.parser')
-    end_page = soup_hem.find('div', class_='container')
+# Next, loop through those links, click the link, find the sample anchor, and return the href
+for i in range(len(links)):
+    hemisphere = {}
     
-    title.append(end_page.find('h2', class_= 'title').text)
-    img_url.append("https://astrogeology.usgs.gov" + end_page.find('img', class_="wide-image")['src'])
-print(title, img_url)
+# Find the elements on each loop to avoid a stale element exception
+    browser.find_by_css("a.product-item h3")[i].click()
+    
+# Find the Sample image anchor tag and extract the href
+    sample_elem = browser.links.find_by_text('Sample').first
+    sample_elem = browser.click_link_by_partial_text('Sample')
+    sample_elem = browser.find_by_text('Sample').first
+    hemisphere['img_url'] = sample_elem['href']
+    
+# Get Hemisphere title
+    hemisphere['title'] = browser.find_by_css("h2.title").text
+    
+# Append hemisphere object to list
+    hemisphere_image_urls.append(hemisphere)
+    
+#  Navigate backwards to iterate all 4 images
+    browser.back()
+
+    print(len(links))
 
 # Save Hemisphere information to a dataframe
-    hemisphere_image_urls = pd.DataFrame({
-    "title": title,
-    "img_url": img_url
-    })
-    hemisphere_image_urls
+# Iterate image list
+hemisphere_image_urls
