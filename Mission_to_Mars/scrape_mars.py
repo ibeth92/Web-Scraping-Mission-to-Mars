@@ -7,14 +7,15 @@ import requests
 
 # Set up browser object
 def init_browser():
+# Replace the path with your actual path to the chromedriver
     executable_path = {'executable_path': '/usr/local/bin/chromedriver'}
-    browser = Browser('chrome', **executable_path, headless=False) 
+    return browser = Browser('chrome', **executable_path, headless=False) 
 
 def scrape():
     browser = init_browser()
     mars = {}
 
-#### NASA MArs News
+#### NASA Mars News
 # Use Splinter to visit the NASA news website to be scraped
 # Scrape https://mars.nasa.gov/news/ and collect the latest News Title and Paragraph Text
     url = 'https://mars.nasa.gov/news/'
