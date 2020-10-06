@@ -138,4 +138,4 @@ def scrape():
     mars["url2"] = hemisphere_image['img_url'][2]
     mars["title3"] = hemisphere_image['title'][3]
     mars["url3"] = hemisphere_image['img_url'][3]
-return mars
+    return mars
