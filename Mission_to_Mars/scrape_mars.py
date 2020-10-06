@@ -8,8 +8,8 @@ import requests
 # Set up browser object
 def init_browser():
 # Replace the path with your actual path to the chromedriver
-    executable_path = {'executable_path': '/usr/local/bin/chromedriver'}
-    return Browser('chrome', **executable_path, headless=False) 
+    executable_path = {"executable_path": "/usr/local/bin/chromedriver"}
+    return Browser("chrome", **executable_path, headless=False) 
 
 def scrape():
     browser = init_browser()
