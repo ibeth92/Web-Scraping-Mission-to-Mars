@@ -130,12 +130,12 @@ def scrape():
     hemisphere_image_urls_df = pd.DataFrame(hemisphere_image_urls)
     hemisphere_image_urls_df
 
-    mars["title0"] = hemisphere_image['title'][0]
-    mars["url0"] = hemisphere_image['img_url'][0]
-    mars["title1"] = hemisphere_image['title'][1]
-    mars["url1"] = hemisphere_image['img_url'][1]
-    mars["title2"] = hemisphere_image['title'][2]
-    mars["url2"] = hemisphere_image['img_url'][2]
-    mars["title3"] = hemisphere_image['title'][3]
-    mars["url3"] = hemisphere_image['img_url'][3]
+    mars["title0"] = hemisphere_image_urls_df['title'][0]
+    mars["url0"] = hemisphere_image_urls_df['img_url'][0]
+    mars["title1"] = hemisphere_image_urls_df['title'][1]
+    mars["url1"] = hemisphere_image_urls_df['img_url'][1]
+    mars["title2"] = hemisphere_image_urls_df['title'][2]
+    mars["url2"] = hemisphere_image_urls_df['img_url'][2]
+    mars["title3"] = hemisphere_image_urls_df['title'][3]
+    mars["url3"] = hemisphere_image_urls_df['img_url'][3]
     return mars
