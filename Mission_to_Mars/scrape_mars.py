@@ -4,6 +4,7 @@ from splinter import Browser
 from bs4 import BeautifulSoup as bs
 import pandas as pd
 import requests
+import time
 
 # Set up browser object
 def init_browser():
@@ -87,6 +88,7 @@ def scrape():
 # Bring in Mars website to be scraped and visit URL
     url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
     browser.visit(url)
+    time.sleep(1)
 
 # Create a list to hold the images and titles.
     hemisphere_image_urls = []
